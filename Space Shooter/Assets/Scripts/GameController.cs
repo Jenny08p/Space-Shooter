@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     public Text scoreText;
     public Text restartText;
     public Text gameOverText;
+    public Text winText;
 
     private bool gameOver;
     private bool restart;
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
         restart = false;
         restartText.text = "";
         gameOverText.text = "";
+        winText.text= "";
         score = 0;
         UpdateScore();
         StartCoroutine(SpawnWaves());
@@ -35,7 +37,7 @@ public class GameController : MonoBehaviour
     {
         if (restart)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
@@ -62,7 +64,7 @@ public class GameController : MonoBehaviour
 
             if (gameOver)
             {
-                restartText.text = "Press 'R' for Restart";
+                restartText.text = "Press 'Z' for Restart";
                 restart = true;
                 break;
             }
@@ -77,7 +79,13 @@ public class GameController : MonoBehaviour
 
     void UpdateScore()
     {
-        scoreText.text = "Score: " + score;
+        scoreText.text = "Points: " + score;
+
+          if (score >= 100)
+        {
+            winText.text = "You Win! Game created by Jenny.";
+            gameOver = true;
+        }
     }
 
     public void GameOver()

@@ -12,10 +12,14 @@ public class WinEvent : MonoBehaviour
 
     public Text winText;
 
+    BGScroller BGScroller; 
+
     void Start()
     {
         GetComponent<GameController>().winEvent.AddListener(PlayWhenWin);
         winText.text = ""; 
+        BGScroller = GameObject.FindGameObjectWithTag("Background").GetComponent<BGScroller>();
+
     }
 
     private void PlayWhenWin()
@@ -24,6 +28,18 @@ public class WinEvent : MonoBehaviour
         winsong.Stop();
         winsong.clip = winclip; 
         winsong.Play(); 
-        Time.timeScale = 0f;
+        StartCoroutine(IncreaseOverTime());
+        
+    }
+
+    
+	IEnumerator IncreaseOverTime()
+    {
+        float speed = 0;
+        for (int i = 0; i < 120; i++)
+        {
+            BGScroller.scrollSpeed = Mathf.SmoothDamp(BGScroller.scrollSpeed, -BGScroller.tileSizeZ/ 5f, ref speed, 0.5f);
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
     }
 }

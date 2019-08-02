@@ -8,6 +8,8 @@ public class BGScroller : MonoBehaviour
 
 	private Vector3 startPosition;
 
+	WinEvent winEvent; 
+
 	void Start ()
 	{
 		startPosition = transform.position;
@@ -15,7 +17,8 @@ public class BGScroller : MonoBehaviour
 
 	void Update ()
 	{
-		float newPosition = Mathf.Repeat(Time.time * scrollSpeed, tileSizeZ);
+		float newPosition = Mathf.Repeat(Time.realtimeSinceStartup * scrollSpeed, tileSizeZ);
 		transform.position = startPosition + Vector3.forward * newPosition;
 	}
+ 
 }

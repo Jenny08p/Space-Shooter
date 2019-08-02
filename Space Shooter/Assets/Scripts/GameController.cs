@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour
     public Text gameOverText;
 
     private bool gameOver;
+
+    private bool win;
     private bool restart;
     private int score;
 
@@ -34,6 +36,7 @@ public class GameController : MonoBehaviour
     {
         gameOver = false;
         restart = false;
+        win = false; 
         restartText.text = "";
         gameOverText.text = "";
         score = 0;
@@ -89,14 +92,19 @@ public class GameController : MonoBehaviour
     {
         scoreText.text = "Points: " + score;
 
-          if (score >= 100)
+          if (score >= 10)
         {
             winEvent.Invoke();
+            win = true; 
         }
     }
 
     public void GameOver()
     {
+        if (win) 
+        {
+            return; 
+        }
         loseEvent.Invoke();
         gameOverText.text = "Game Over!";
         gameOver = true;

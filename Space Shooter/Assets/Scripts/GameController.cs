@@ -92,7 +92,7 @@ public class GameController : MonoBehaviour
     {
         scoreText.text = "Points: " + score;
 
-          if (score >= 10)
+          if (score >= 100)
         {
             winEvent.Invoke();
             win = true; 

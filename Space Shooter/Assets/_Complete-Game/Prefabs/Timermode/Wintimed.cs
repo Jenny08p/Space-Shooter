@@ -13,7 +13,7 @@ public class Wintimed : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Gamecontroller>().winEvent.AddListener(PlayWhenWin);
+        //GetComponent<Timer>().winevent.AddListener(PlayWhenWin);
         
     }
 

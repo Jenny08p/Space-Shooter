@@ -1,20 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Events;
  
 public class Timer : MonoBehaviour
 {
     public int timeLeft = 5;
     public Text countdownText;
 
-    private bool gameOver;
-
-    Gamecontroller gController;
 
     void Start()
     {
         StartCoroutine("LoseTime");
-        gController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Gamecontroller>();
     }
  
     void Update()
@@ -23,9 +20,9 @@ public class Timer : MonoBehaviour
  
         if (timeLeft <= 0)
         {
+            Time.timeScale = 0f; 
             StopCoroutine("LoseTime");
             countdownText.text = "Times Up!";
-            gController.GameOver();
         }
     }
  
@@ -33,10 +30,9 @@ public class Timer : MonoBehaviour
     {
         while (true)
         {
-            gameOver = true;
             yield return new WaitForSeconds(1);
             timeLeft--;
-        }
+         }
           
     }
 }

@@ -21,13 +21,6 @@ public class Gamecontroller : MonoBehaviour
     private bool restart;
     private int score;
 
-     internal UnityEvent winEvent; 
-
-     void Awake() 
-    {
-        winEvent = new UnityEvent(); 
-    }
-
     void Start()
     {
         gameOver = false;
